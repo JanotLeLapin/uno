@@ -9,6 +9,7 @@ class Player {
         for (let i = 0; i < 7; i++) {
             this.deck.push(this.stack.pickCard());
         }
+        this.done = false;
     }
     // Plays a card from the player's deck to the game deck
     play() {
@@ -24,9 +25,6 @@ class Player {
                 case 'skip':
                     console.log('-- ' + this.reprName() + ' turn got skipped --');
                     return;
-                case 'reverse':
-                    console.log('-- Should reverse turns but... --');
-                    return;
             }
         }
         if (this.bot) {
@@ -38,16 +36,18 @@ class Player {
             if (!playableCards.length) {
                 const card = this.stack.pickCard();
                 this.deck.push(card);
-                console.log('-- ' + this.reprName() + ' draws ' + card.repr() + ' --');
+                console.log('-- ' + this.reprName() + ' draws ' + card.repr() + ', now has ' + this.deck.length + ' cards --');
                 return;
             }
             const card = playableCards[0];
             this.deck.splice(this.deck.indexOf(card), 1);
             this.stack.currentCard = card;
-            console.log('-- ' + this.reprName() + ' plays ' + card.repr() + ' --');
+            console.log('-- ' + this.reprName() + ' plays ' + card.repr() + ', now has ' + this.deck.length + ' cards --');
         }
-        if (!this.deck.length)
+        if (!this.deck.length) {
+            this.done = true;
             console.log('-- ' + this.reprName() + ' WINS --');
+        }
     }
     reprName() {
         return this.name + (this.bot ? ' [BOT]' : '');
