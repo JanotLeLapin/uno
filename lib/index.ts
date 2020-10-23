@@ -15,7 +15,7 @@ console.log('-- Game Starts! --');
 players.forEach(player => {
     console.log('-- ' + player.reprName() + ' deck -- ');
     console.log(player.deck.map(card => '  ' + card.repr()).join('\n'));
-})
+});
 
 while (true) {
     players.forEach(player => {
