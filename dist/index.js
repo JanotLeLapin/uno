@@ -18,11 +18,14 @@ players.forEach(player => {
     console.log('-- ' + player.reprName() + ' deck -- ');
     console.log(player.deck.map(card => '  ' + card.repr()).join('\n'));
 });
+const finished = false;
 while (true) {
     players.forEach(player => {
+        if (players.filter(player => !player.done).length <= 1)
+            return finished;
         if (!player.done)
             player.play();
     });
-    if (!players.find(player => !player.done))
+    if (finished)
         break;
 }

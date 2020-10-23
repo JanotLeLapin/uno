@@ -20,7 +20,7 @@ class Player {
                     for (let i = 0; i < 2; i++) {
                         this.deck.push(this.stack.pickCard());
                     }
-                    console.log('-- ' + this.reprName() + ' picked 2 cards --');
+                    console.log('-- ' + this.reprName() + ' picked 2 cards, now has ' + this.deck.length + ' --');
                     return;
                 case 'skip':
                     console.log('-- ' + this.reprName() + ' turn got skipped --');
