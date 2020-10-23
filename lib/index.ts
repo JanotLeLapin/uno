@@ -19,9 +19,7 @@ players.forEach(player => {
 
 while (true) {
     players.forEach(player => {
-        if (!player.deck.length) return players.splice(players.indexOf(player), 1);
-        if (players.length <= 1) return;
-        player.play();
+        if (!player.done) player.play();
     });
-    if (players.length <= 1) break;
+    if (!players.find(player => !player.done)) break;
 }
